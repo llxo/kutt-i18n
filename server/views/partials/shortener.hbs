@@ -1,10 +1,9 @@
 <main>
-  <div id="shorturl">
-    {{#if link}}
+  <div id="shorturl">    {{#if link}}
       <div class="clipboard">
         <button 
           type="button"
-          aria-label="Copy" 
+          aria-label="{{i18n 'common.copy'}}" 
           hx-on:click="handleShortURLCopyLink(this);" 
           data-url="{{url}}"
         >
@@ -21,7 +20,7 @@
       </h1>
     {{/if}}
     {{#unless link}}
-        <h1>Cut your links <span>shorter</span>.</h1>
+        <h1>{{i18n 'homepage.title'}} <span>{{i18n 'homepage.description'}}</span>.</h1>
     {{/unless}}
   </div>
   <form 
@@ -31,13 +30,12 @@
     hx-target="closest main" 
     hx-swap="outerHTML" 
     autocomplete="off"
-  >
-    <div class="target-wrapper {{#if errors.target}}error{{/if}}">
+  >    <div class="target-wrapper {{#if errors.target}}error{{/if}}">
       <input
         id="target"
         name="target"
         type="text"
-        placeholder="Paste your long URL"
+        placeholder="{{i18n 'homepage.shortener.placeholder'}}"
         aria-label="target"
         autofocus="true"
         data-lpignore="true"
@@ -53,20 +51,18 @@
           <p class="error">{{error}}</p>
         {{/if}}
       {{/unless}}
-    </div>
-    <label id="advanced" class="checkbox">
+    </div>    <label id="advanced" class="checkbox">
       <input 
         name="show_advanced" 
         type="checkbox" 
         hx-on:change="htmx.toggleClass('#advanced-options', 'hidden')"
         {{#if show_advanced}}checked="true"{{/if}}
       />
-      Show advanced options
+      {{i18n 'homepage.shortener.advanced'}}
     </label>
     <section id="advanced-options" class="{{#unless show_advanced}}hidden{{/unless}}">
-      <div class="advanced-input-wrapper">
-        <label class="{{#if errors.domain}}error{{/if}}">
-          Domain:
+      <div class="advanced-input-wrapper">        <label class="{{#if errors.domain}}error{{/if}}">
+          {{i18n 'homepage.shortener.domain'}}:
           <select 
             id="domain" 
             name="domain" 
@@ -85,33 +81,30 @@
           {{#if errors.domain}}<p class="error">{{errors.domain}}</p>{{/if}}
         </label>
         <label id="customurl-label" class="{{#if errors.customurl}}error{{/if}}">
-          <span id="customurl-label-value" hx-preserve="true">{{default_domain}}/</span>
-          <input
+          <span id="customurl-label-value" hx-preserve="true">{{default_domain}}/</span>          <input
             type="text" 
             id="customurl" 
             name="customurl" 
-            placeholder="Custom address..." 
+            placeholder="{{i18n 'homepage.shortener.customurl'}}..." 
             hx-preserve="true"
             autocomplete="off" 
           />
           {{#if errors.customurl}}<p class="error">{{errors.customurl}}</p>{{/if}}
-        </label>
-        <label class="{{#if errors.password}}error{{/if}}">
-          Password:
+        </label>        <label class="{{#if errors.password}}error{{/if}}">
+          {{i18n 'homepage.shortener.password'}}:
           <input 
             type="password" 
             id="password" 
             name="password" 
-            placeholder="Password..." 
+            placeholder="{{i18n 'homepage.shortener.password'}}..." 
             hx-preserve="true" 
             autocomplete="off" 
           />
           {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
         </label>
       </div>
-      <div class="advanced-input-wrapper">
-        <label class="expire-in {{#if errors.expire_in}}error{{/if}}">
-          Expire in:
+      <div class="advanced-input-wrapper">        <label class="expire-in {{#if errors.expire_in}}error{{/if}}">
+          {{i18n 'homepage.shortener.expiration'}}:
           <input 
             type="text" 
             id="expire_in" 
@@ -120,14 +113,13 @@
             hx-preserve="true" 
           />
           {{#if errors.expire_in}}<p class="error">{{errors.expire_in}}</p>{{/if}}
-        </label>
-        <label class="description {{#if errors.description}}error{{/if}}">
-          Description:
+        </label>        <label class="description {{#if errors.description}}error{{/if}}">
+          {{i18n 'homepage.shortener.description'}}:
           <input 
             type="text" 
             id="description" 
             name="description" 
-            placeholder="Description..." 
+            placeholder="{{i18n 'homepage.shortener.description'}}..." 
             hx-preserve="true" 
           />
           {{#if errors.description}}<p class="error">{{errors.description}}</p>{{/if}}

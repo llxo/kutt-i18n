@@ -3,13 +3,12 @@
     {{id}}
   </td>
   <td class="domains-address right-fade">
-    {{address}}
-    <p class="description">
-      by&nbsp;
+    {{address}}    <p class="description">
+      {{i18n 'admin.domain.by'}}&nbsp;
       {{~#if user_id~}}
         <a 
-          aria-label="View user" 
-          data-tooltip="View user" 
+          aria-label="{{i18n 'admin.domain.viewUser'}}" 
+          data-tooltip="{{i18n 'admin.domain.viewUser'}}" 
           hx-get="/api/users/admin"
           hx-target="closest table"
           hx-swap="outerHTML" 
@@ -24,8 +23,8 @@
         {{else}}
           &nbsp;(
           <a 
-            aria-label="View domains" 
-            data-tooltip="View domains" 
+            aria-label="{{i18n 'admin.domain.viewDomains'}}" 
+            data-tooltip="{{i18n 'admin.domain.viewDomains'}}" 
             hx-get="/api/domains/admin"
             hx-target="closest table"
             hx-swap="outerHTML" 
@@ -33,13 +32,13 @@
             hx-indicator="closest table"
             hx-vals='{"user":"{{email}}"}'
           >
-            view domains
+            {{i18n 'admin.domain.viewDomains'}}
           </a>)
         {{/ifEquals}}
       {{~else~}}
         <a 
-          aria-label="View system domains" 
-          data-tooltip="View system domains" 
+          aria-label="{{i18n 'admin.domain.viewSystemDomains'}}" 
+          data-tooltip="{{i18n 'admin.domain.viewSystemDomains'}}" 
           hx-get="/api/domains/admin"
           hx-target="closest table"
           hx-swap="outerHTML" 
@@ -47,19 +46,18 @@
           hx-indicator="closest table"
           hx-vals='{"owner":"false"}'
         >
-          System
+          {{i18n 'admin.domain.system'}}
         </a>
       {{~/if~}}
       &nbsp;{{~#if description~}}· {{description}}{{~/if}}
     </p>
   </td>
-  <td class="domains-homepage right-fade">
-    {{#if homepage}}
+  <td class="domains-homepage right-fade">    {{#if homepage}}
       <a href="{{homepage}}" target="_blank" rel="noopener noreferrer">
         {{homepage}}
       </a>
     {{else}}
-      No homepage
+      {{i18n 'admin.domain.noHomepage'}}
     {{/if}}
   </td>
   <td class="domains-created-at">
@@ -68,10 +66,9 @@
   <td class="domains-links-count">
     {{#ifEquals links_count '0'}}
       {{links_count}}
-    {{else}}
-      <a
-        data-tooltip="View links"
-        aria-label="View links"
+    {{else}}      <a
+        data-tooltip="{{i18n 'admin.domain.viewLinks'}}"
+        aria-label="{{i18n 'admin.domain.viewLinks'}}"
         hx-get="/api/links/admin"
         hx-target="closest table"
         hx-swap="outerHTML" 

@@ -5,10 +5,9 @@
   <td class="users-email">
     {{email}}
     <p class="description">
-      {{#if domains}}
-        <a
-          aria-label="View domains" 
-          data-tooltip="View domains" 
+      {{#if domains}}        <a
+          aria-label="{{i18n 'admin.user.viewDomains'}}" 
+          data-tooltip="{{i18n 'admin.user.viewDomains'}}" 
           hx-get="/api/domains/admin"
           hx-target="closest table"
           hx-swap="outerHTML" 
@@ -20,34 +19,31 @@
           {{domains}}
         </a>
       {{else}}
-        <span>No domains</span>
+        <span>{{i18n 'admin.user.noDomains'}}</span>
       {{/if}}
     </p>
   </td>
   <td class="users-created-at">
     {{relative_created_at}}
   </td>
-  <td class="users-verified">
-    {{#if verified}}
-      <span class="status green">VERIFIED</span>
+  <td class="users-verified"> {{#if verified}}
+    <span class="status green">{{i18n 'admin.isVerified'}}</span>
     {{else}}
-      <span class="status gray">NOT VERIFIED</span>
+    <span class="status gray">{{i18n 'admin.notVerified'}}</span>
     {{/if}}
   </td>
-  <td class="users-role">
-    {{#ifEquals role "ADMIN"}}
-    <span class="status red">ADMIN</span>
+  <td class="users-role">    {{#ifEquals role "ADMIN"}}
+    <span class="status red">{{i18n 'admin.roleAdmin'}}</span>
     {{else}}
-    <span class="status gray">USER</span>
+    <span class="status gray">{{i18n 'admin.roleUser'}}</span>
     {{/ifEquals}}
   </td>
   <td class="users-links-count">
     {{#ifEquals links_count '0'}}
       {{links_count}}
-    {{else}}
-      <a
-        data-tooltip="View links"
-        aria-label="View links"
+    {{else}}      <a
+        data-tooltip="{{i18n 'admin.user.viewLinks'}}"
+        aria-label="{{i18n 'admin.user.viewLinks'}}"
         hx-get="/api/links/admin"
         hx-target="closest table"
         hx-swap="outerHTML" 

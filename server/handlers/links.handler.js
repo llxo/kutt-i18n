@@ -373,19 +373,25 @@ async function remove(req, res) {
 
 async function report(req, res) {
   const { link } = req.body;
+  
+  // 获取用户的语言设置
+  const language = req.user 
+    ? req.user.language 
+    : (req.cookies.lang || req.app.locals.i18n.getLanguage(req));
 
-  await transporter.sendReportEmail(link);
+  // 使用用户语言发送邮件
+  await transporter.sendReportEmail(link, language);
 
   if (req.isHTML) {
     res.render("partials/report/form", {
-      message: "Report was received. We'll take actions shortly."
+      message: req.app.locals.i18n.translate('report.receiveSuccess', language)
     });
     return;
   }
   
   return res
     .status(200)
-    .send({ message: "Thanks for the report, we'll take actions shortly." });
+    .send({ message: req.app.locals.i18n.translate('report.receiveSuccess', language) });
 };
 
 async function ban(req, res) {

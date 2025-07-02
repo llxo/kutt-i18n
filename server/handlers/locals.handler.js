@@ -1,6 +1,7 @@
 const query = require("../queries");
 const utils = require("../utils");
 const env = require("../env");
+const i18n = require("../i18n");
 
 function isHTML(req, res, next) {
   const accepts = req.accepts(["json", "html"]);
@@ -30,6 +31,16 @@ function config(req, res, next) {
   res.locals.mail_enabled = env.MAIL_ENABLED;
   res.locals.report_email = env.REPORT_EMAIL;
   res.locals.custom_styles = utils.getCustomCSSFileNames();
+  
+  // Setup i18n
+  const language = i18n.getLanguage(req);
+  const t = i18n.createTranslator(language);
+  
+  // Set language in response locals
+  res.locals.language = language;
+  res.locals.t = t;
+  res.locals.availableLanguages = i18n.getAvailableLanguages();
+  
   next();
 }
 

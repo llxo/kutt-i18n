@@ -5,10 +5,9 @@
     </a>
     <p class="description">
       by&nbsp;
-      {{~#if user_id~}}
-        <a 
-          aria-label="View user" 
-          data-tooltip="View user" 
+      {{~#if user_id~}}        <a 
+          aria-label="{{i18n 'admin.link.viewUser'}}" 
+          data-tooltip="{{i18n 'admin.link.viewUser'}}" 
           hx-get="/api/users/admin"
           hx-target="closest table"
           hx-swap="outerHTML" 
@@ -23,8 +22,8 @@
         {{else}}
           &nbsp;(
           <a 
-            aria-label="View links by this user" 
-            data-tooltip="View links by this user" 
+            aria-label="{{i18n 'admin.link.viewLinks'}}" 
+            data-tooltip="{{i18n 'admin.link.viewLinks'}}" 
             hx-get="/api/links/admin"
             hx-target="closest table"
             hx-swap="outerHTML" 
@@ -32,13 +31,13 @@
             hx-indicator="closest table"
             hx-vals='{"user":"{{email}}"}'
           >
-            view links
+            {{i18n 'admin.link.viewLinks2'}}
           </a>)
         {{/ifEquals}}
       {{~else~}}
         <a 
-          aria-label="View anonymous links" 
-          data-tooltip="View anonymous links" 
+          aria-label="{{i18n 'admin.link.viewAnonymousLinks'}}" 
+          data-tooltip="{{i18n 'admin.link.viewAnonymousLinks'}}" 
           hx-get="/api/links/admin"
           hx-target="closest table"
           hx-swap="outerHTML" 
@@ -46,17 +45,16 @@
           hx-indicator="closest table"
           hx-vals='{"anonymous":"true"}'
         >
-          Anonymous
+          {{i18n 'admin.link.anonymous'}}
         </a>
       {{~/if~}}
       &nbsp;{{~#if description~}}· {{description}}{{~/if}}
     </p>
   </td>
   <td class="created-at">
-    {{relative_created_at}}
-    {{#if relative_expire_in}}
+    {{relative_created_at}}    {{#if relative_expire_in}}
       <p class="description">
-        Expires in {{relative_expire_in}}
+        {{i18n 'admin.link.expiresIn'}} {{relative_expire_in}}
       </p>
     {{/if}}
   </td>
@@ -74,10 +72,9 @@
       </div>
       <a href="{{link.url}}">/{{link.address}}</a>
     </div>
-    <p class="description">
-      <a 
-        aria-label="View links by this domain" 
-        data-tooltip="View links by this domain" 
+    <p class="description">      <a 
+        aria-label="{{i18n 'admin.link.viewLinksByDomain'}}" 
+        data-tooltip="{{i18n 'admin.link.viewLinksByDomain'}}" 
         hx-get="/api/links/admin"
         hx-target="closest table"
         hx-swap="outerHTML" 

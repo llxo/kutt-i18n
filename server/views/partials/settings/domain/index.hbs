@@ -1,39 +1,33 @@
 <h2>
-  Custom domain
+  {{i18n 'settings.domain.title'}}
 </h2>
 <p>
-  You can set a custom domain for your short URLs, so instead of
-  <b>{{default_domain}}/shorturl</b> you can have
-  <b>yoursite.com/shorturl.</b>
+  {{i18n 'settings.domain.description'}}
 </p>
 
 {{#if server_cname_address}}
-  <p>
-    Point your domain's A record to 
+  <p>    {{i18n 'settings.domain.pointARecord'}} 
     {{#if server_ip_address}}
       <b>{{server_ip_address}}</b>
     {{else}}
-      our <b>IP address</b>
-    {{/if}} or your subdomain's CNAME record to
-    <b>{{server_cname_address}}</b>. If you're using <b>Cloudflare</b>,
-    make sure to use <b>DNS only</b> mode for your subdomain.
+      {{i18n 'settings.domain.ourIpAddress'}}
+    {{/if}} {{i18n 'settings.domain.orPointCNAME'}}
+    <b>{{server_cname_address}}</b>. {{i18n 'settings.domain.cloudflareNote'}}
   </p>
-  <p>Then, add the domain via the form below:</p>
-{{else}}
-  <p>
-    Point your domain's A record to 
+  <p>{{i18n 'settings.domain.thenAddDomain'}}</p>
+{{else}}  <p>
+    {{i18n 'settings.domain.pointARecord'}} 
     {{#if server_ip_address}}
       <b>{{server_ip_address}}</b>
     {{else}}
-      our <b>IP address</b>
+      {{i18n 'settings.domain.ourIpAddress'}}
     {{/if}} 
-    then add the domain via the form below:
+    {{i18n 'settings.domain.thenAddDomain'}}
   </p>
 {{/if}}
 
 {{> settings/domain/table}}
-<div class="add-domain-wrapper">
-  <button
+<div class="add-domain-wrapper">  <button
     type="button"
     class="secondary show-domain-form"
     hx-indicator=".add-domain-wrapper"
@@ -43,7 +37,7 @@
     hx-on::after-request="event.srcElement.classList.add('hidden')"
   >
     <span>{{> icons/plus}}</span>
-    Add domain
+    {{i18n 'settings.domain.add'}}
   </button>
   {{> icons/spinner}}
   <div id="domain-form-wrapper">

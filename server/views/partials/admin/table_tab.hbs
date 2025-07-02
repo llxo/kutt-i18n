@@ -1,7 +1,6 @@
 <tr class="category">
-  <th class="category-total">
-    <p id="category-total">
-      Total {{title}}: <b>{{#if total includeZero=true}}{{total_formatted}}{{else}}-{{/if}}</b>
+  <th class="category-total">    <p id="category-total">
+      {{i18n 'admin.total'}} {{title}}：<b>{{#if total includeZero=true}}{{total_formatted}}{{else}}-{{/if}}</b>
     </p>
   </th>
   <th class="category-tab">
@@ -19,9 +18,8 @@
         {{#ifEquals title 'links'}}
           class="active"
           hx-on:htmx:before-request="event.preventDefault()"
-        {{/ifEquals}}
-      >
-        Links
+        {{/ifEquals}}      >
+        {{i18n 'admin.links'}}
       </a>
       <a 
         id="tab-users" 
@@ -38,7 +36,7 @@
           hx-on:htmx:before-request="event.preventDefault()"
         {{/ifEquals}}
       >
-        Users
+        {{i18n 'admin.users'}}
       </a>
        <a 
         id="tab-domains" 
@@ -52,10 +50,9 @@
         onclick="setTab(event)"
         {{#ifEquals title 'domains'}}
           class="active"
-          hx-on:htmx:before-request="event.preventDefault()"
-        {{/ifEquals}}
+          hx-on:htmx:before-request="event.preventDefault()"        {{/ifEquals}}
       >
-        Domains
+        {{i18n 'admin.domains'}}
       </a>
     </nav>
   </th>

@@ -1,23 +1,21 @@
-<form id="login-signup" hx-post="/api/auth/login" hx-swap="outerHTML">
-  <label class="{{#if errors.email}}error{{/if}}">
-    Email address:
+<form id="login-signup" hx-post="/api/auth/login" hx-swap="outerHTML">  <label class="{{#if errors.email}}error{{/if}}">
+    {{i18n 'auth.login.email'}}:
     <input
       name="email"
       id="email"
       type="email"
       autofocus="true"
-      placeholder="Email address..."
+      placeholder="{{i18n 'auth.login.email'}}..."
       hx-preserve="true"
     />
     {{#if errors.email}}<p class="error">{{errors.email}}</p>{{/if}}
-  </label>
-  <label class="{{#if errors.password}}error{{/if}}">
-    Password:
+  </label>  <label class="{{#if errors.password}}error{{/if}}">
+    {{i18n 'auth.login.password'}}:
     <input
       name="password"
       id="password"
       type="password"
-      placeholder="Password..."
+      placeholder="{{i18n 'auth.login.password'}}..."
       hx-preserve="true"
     />
     {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
@@ -26,10 +24,9 @@
     <button 
       type="submit" 
       class="primary login {{#if disallow_registration}}full{{else}}{{#unless mail_enabled}}full{{/unless}}{{/if}}"
-    >
-      <span>{{> icons/login}}</span>
+    >      <span>{{> icons/login}}</span>
       <span>{{> icons/spinner}}</span>
-      Log in
+      {{i18n 'auth.login.submit'}}
     </button>
     {{#unless disallow_registration}}
       {{#if mail_enabled}}
@@ -44,10 +41,9 @@
           hx-sync="closest form"
           hx-on:htmx:before-request="htmx.addClass('#login-signup', 'signup')"
           hx-on:htmx:after-request="htmx.removeClass('#login-signup', 'signup')"
-        >
-            <span>{{> icons/new_user}}</span>
+        >            <span>{{> icons/new_user}}</span>
             <span>{{> icons/spinner}}</span>
-            Sign up
+            {{i18n 'auth.signup.submit'}}
         </button>
       {{/if}}
     {{/unless}}

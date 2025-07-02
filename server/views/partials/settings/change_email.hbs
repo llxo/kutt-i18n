@@ -1,8 +1,8 @@
 <section id="change-email-wrapper">
   <h2>
-    Change email
+    {{i18n 'settings.changeEmail.title'}}
   </h2>
-  <p>Enter your password and a new email address to change your email address.</p>
+  <p>{{i18n 'settings.changeEmail.description'}}</p>
   <form 
     id="change-email"
     hx-post="/api/auth/change-email"
@@ -10,20 +10,18 @@
     hx-swap="outerHTML"
     hx-sync="this:abort"
   >
-    <div class="inputs">
-      <label class="{{#if errors.password}}error{{/if}}">
-        Passwod:
+    <div class="inputs">      <label class="{{#if errors.password}}error{{/if}}">
+        {{i18n 'settings.changeEmail.current'}}:
         <input 
           id="password-for-change-email" 
           name="password" 
           type="password" 
-          placeholder="Password..."
+          placeholder="{{i18n 'auth.login.password'}}..."
           hx-preserve="true"
         />
         {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
-      </label>
-      <label class="{{#if errors.email}}error{{/if}}">
-        New email address:
+      </label>      <label class="{{#if errors.email}}error{{/if}}">
+        {{i18n 'settings.changeEmail.new'}}:
         <input 
           id="email-for-change-email" 
           name="email" 
@@ -33,11 +31,10 @@
         />
         {{#if errors.email}}<p class="error">{{errors.email}}</p>{{/if}}
       </label>
-    </div>
-    <button type="submit" class="primary">
+    </div>    <button type="submit" class="primary">
       <span>{{> icons/reload}}</span>
       <span>{{> icons/spinner}}</span>
-      Update
+      {{i18n 'settings.changeEmail.submit'}}
     </button>
     {{#if error}}
       {{#unless errors}}

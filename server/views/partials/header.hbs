@@ -19,36 +19,38 @@
       {{/if}}
     </ul>
   </div>
-  <nav>
-    <ul>
+  <nav>    <ul>
       {{#unless user}}
         <li>
-          <a class="button primary" href="/login" title="Log in or sign up">
-            Log in / Sign up
+          <a class="button primary" href="/login" title="{{i18n 'common.login'}}">
+            {{i18n 'common.login'}} / {{i18n 'auth.signup.title'}}
           </a>
         </li>
       {{/unless}}
       {{#if user}}
         <li>
-          <a class="button primary" href="/settings" title="Settings">
+          <a class="button primary" href="/settings" title="{{i18n 'common.settings'}}">
             <span>{{> icons/cog}}</span>
-            Settings
+            {{i18n 'common.settings'}}
           </a>
         </li>
         {{#if isAdmin}}
           <li>
-            <a class="button secondary" href="/admin" title="Admin">
+            <a class="button secondary" href="/admin" title="{{i18n 'common.admin'}}">
               <span>{{> icons/shield}}</span>
-              Admin
+              {{i18n 'common.admin'}}
             </a>
           </li>
         {{/if}}
         <li>
-          <a class="nav" href="/logout" title="Log out">
-            Log out
+          <a class="nav" href="/logout" title="{{i18n 'common.logout'}}">
+            {{i18n 'common.logout'}}
           </a>
         </li>
       {{/if}}
+      <li>
+        {{> language_switcher}}
+      </li>
     </ul>
   </nav>
 </header>

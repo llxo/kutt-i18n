@@ -1,20 +1,20 @@
 <div class="content">
-  <h2>Ban user?</h2>
+  <h2>{{i18n 'dialog.admin.user.ban.title'}}</h2>
   <p>
-    Are you sure do you want to ban the user &quot;<b>{{email}}</b>&quot;?
+    {{i18n 'dialog.admin.user.ban.confirmMessage' email=email}}
   </p>
   <div class="ban-checklist">
     <label class="checkbox">
       <input id="ban-user-links" name="links" type="checkbox" />
-      User links
+      {{i18n 'dialog.admin.user.ban.userLinks'}}
     </label>
     <label class="checkbox">
       <input id="ban-user-domains" name="domains" type="checkbox" />
-      User domains
+      {{i18n 'dialog.admin.user.ban.userDomains'}}
     </label>
   </div>
   <div class="buttons">
-    <button type="button" hx-on:click="closeDialog()">Cancel</button>
+    <button type="button" hx-on:click="closeDialog()">{{i18n 'dialog.cancel'}}</button>
     <button 
       type="button"
       class="danger confirm" 
@@ -30,7 +30,7 @@
       <span class="stop">
         {{> icons/stop}}
       </span>
-      Ban
+      {{i18n 'dialog.admin.user.ban.button'}}
     </button>
     {{> icons/spinner}}
   </div>

@@ -1,28 +1,27 @@
 <div class="content">
-  <h2>Ban link?</h2>
+  <h2>{{i18n 'dialog.ban.title'}}</h2>
   <p>
-    Are you sure do you want to ban the link &quot;<b>{{link}}</b>&quot;?
+    {{i18n 'dialog.ban.confirmMessage' link=link}}
   </p>
   <div class="ban-checklist">
     <label class="checkbox">
       <input id="user" name="user" type="checkbox" />
-      User
+      {{i18n 'dialog.ban.user'}}
     </label>
     <label class="checkbox">
       <input id="userLinks" name="userLinks" type="checkbox" />
-      User links
+      {{i18n 'dialog.ban.userLinks'}}
     </label>
     <label class="checkbox">
       <input id="host" name="host" type="checkbox" />
-      Host
+      {{i18n 'dialog.ban.host'}}
     </label>
     <label class="checkbox">
       <input id="domain" name="domain" type="checkbox" />
-      Domain
-    </label>
+      {{i18n 'dialog.ban.domain'}}    </label>
   </div>
   <div class="buttons">
-    <button type="button" hx-on:click="closeDialog()">Cancel</button>
+    <button type="button" hx-on:click="closeDialog()">{{i18n 'dialog.cancel'}}</button>
     <button 
       type="button"
       class="danger confirm" 
@@ -38,7 +37,7 @@
       <span class="stop">
         {{> icons/stop}}
       </span>
-      Ban
+      {{i18n 'dialog.ban.button'}}
     </button>
     {{> icons/spinner}}
   </div>

@@ -3,10 +3,10 @@
     {{> icons/check}}
   </div>
   <p>
-    The user <b>"{{email}}"</b> has been created successfully.
+    {{i18n 'dialog.admin.user.create.success' email=email}}
   </p>
   <div class="buttons">
-    <button type="button" hx-on:click="closeDialog()">Close</button>
+    <button type="button" hx-on:click="closeDialog()">{{i18n 'dialog.close'}}</button>
   </div>
 </div>
 

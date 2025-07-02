@@ -1,6 +1,5 @@
-<td class="actions users-actions">
-  {{#if banned}}
-    <button class="action banned" disabled="true" data-tooltip="Banned">
+<td class="actions users-actions">  {{#if banned}}
+    <button class="action banned" disabled="true" data-tooltip="{{i18n 'admin.action.banned'}}">
       {{> icons/stop}}
     </button>
   {{/if}}

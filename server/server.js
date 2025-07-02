@@ -14,6 +14,7 @@ const locals = require("./handlers/locals.handler");
 const links = require("./handlers/links.handler");
 const routes = require("./routes");
 const utils = require("./utils");
+const i18n = require("./i18n");
 
 
 // run the cron jobs
@@ -28,6 +29,12 @@ require("./passport");
 
 // create express app
 const app = express();
+
+// Make i18n available in app locals
+app.locals.i18n = i18n;
+
+// Make app globally accessible for i18n helper
+global.app = app;
 
 // this tells the express app that it's running behind a proxy server
 // and thus it should get the IP address from the proxy server

@@ -1,9 +1,8 @@
 <table id="domains-table" hx-swap-oob="true">
-  <thead>
-    <tr>
-      <th class="domain">Domain</th>
-      <th class="homepage">Homepage</th>
-      <th class="actions"></th>
+  <thead>    <tr>
+      <th class="domain">{{i18n 'table.address'}}</th>
+      <th class="homepage">{{i18n 'table.homepage'}}</th>
+      <th class="actions">{{i18n 'table.actions'}}</th>
     </tr>
   </thead>
   <tbody>
@@ -34,7 +33,7 @@
     {{else}}
       <tr>
         <td class="no-entry">
-          No domains yet.
+          {{i18n 'admin.noDomain'}}
         </td>
       </tr>
     {{/if}}

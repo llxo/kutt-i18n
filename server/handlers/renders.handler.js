@@ -41,9 +41,12 @@ async function createAdmin(req, res) {
   if (isThereAUser) {
     res.redirect("/login");
     return;
-  }
+  }  // 获取用户的语言设置
+  const language = req.cookies.lang || req.app.locals.i18n.getLanguage(req);
+  const i18n = req.app.locals.i18n;
+  
   res.render("create_admin", {
-    title: "Create admin account"
+    title: i18n.translate('auth.admin.create', language)
   });
 }
 

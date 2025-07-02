@@ -5,6 +5,7 @@ const fs = require("node:fs");
 const { resetMailText, verifyMailText, changeEmailText } = require("./text");
 const { CustomError } = require("../utils");
 const env = require("../env");
+const { getMailTranslation } = require("./i18n");
 
 const mailConfig = {
   host: env.MAIL_HOST,
@@ -51,11 +52,15 @@ async function verification(user) {
     throw new Error("Attempting to send verification email but email is not enabled.");
   };
 
+  // 获取用户语言设置，如果没有则使用默认语言
+  const userLang = user.language || env.DEFAULT_LANGUAGE || 'en';
+  const translation = getMailTranslation(userLang, 'verifyMail');
+  
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Verify your account",
-    text: verifyMailText
+    subject: translation.subject,
+    text: translation.text
       .replace(/{{verification}}/gim, user.verification_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
       .replace(/{{site_name}}/gm, env.SITE_NAME),
@@ -75,11 +80,15 @@ async function changeEmail(user) {
     throw new Error("Attempting to send change email token but email is not enabled.");
   };
   
+  // 获取用户语言设置
+  const userLang = user.language || env.DEFAULT_LANGUAGE || 'en';
+  const translation = getMailTranslation(userLang, 'changeEmail');
+  
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.change_email_address,
-    subject: "Verify your new email address",
-    text: changeEmailText
+    subject: translation.subject,
+    text: translation.text
       .replace(/{{verification}}/gim, user.change_email_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
       .replace(/{{site_name}}/gm, env.SITE_NAME),
@@ -98,17 +107,22 @@ async function resetPasswordToken(user) {
   if (!env.MAIL_ENABLED) {
     throw new Error("Attempting to send reset password email but email is not enabled.");
   };
-
+  
+  // 获取用户语言设置
+  const userLang = user.language || env.DEFAULT_LANGUAGE || 'en';
+  const translation = getMailTranslation(userLang, 'resetPassword');
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Reset your password",
-    text: resetMailText
+    subject: translation.subject,
+    text: translation.text
       .replace(/{{resetpassword}}/gm, user.reset_password_token)
-      .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN),
+      .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
+      .replace(/{{site_name}}/gm, env.SITE_NAME),
     html: resetEmailTemplate
       .replace(/{{resetpassword}}/gm, user.reset_password_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
+      .replace(/{{site_name}}/gm, env.SITE_NAME)
   });
 
   if (!mail.accepted.length) {
@@ -118,15 +132,18 @@ async function resetPasswordToken(user) {
   }
 }
 
-async function sendReportEmail(link) {
+async function sendReportEmail(link, language = 'en') {
   if (!env.MAIL_ENABLED) {
     throw new Error("Attempting to send report email but email is not enabled.");
   };
 
+  // 获取语言设置
+  const translation = getMailTranslation(language, 'report');
+
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: env.REPORT_EMAIL,
-    subject: "[REPORT]",
+    subject: translation.subject,
     text: link,
     html: link
   });

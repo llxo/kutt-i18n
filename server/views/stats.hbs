@@ -12,10 +12,9 @@
     formatDateHour('#stats .last-update-value');
     createCharts();
   "
->
-  <div class="loading-stats">
+>  <div class="loading-stats">
     {{> icons/spinner}}
-    Loading stats...
+    {{i18n 'stats.loading'}}
   </div>
 </section>
 {{> footer}}

@@ -8,8 +8,10 @@ const health = require("./health.routes");
 const link = require("./link.routes");
 const user = require("./user.routes");
 const auth = require("./auth.routes");
+const language = require("./language.routes");
 
 const renderRouter = Router();
+renderRouter.use(language);
 renderRouter.use(renders);
 
 const apiRouter = Router();

@@ -1,8 +1,8 @@
 <section id="delete-account-wrapper">
   <h2>
-    Delete account
+    {{i18n 'settings.deleteAccount.title'}}
   </h2>
-  <p>Delete your account from {{default_domain}}.</p>
+  <p>{{i18n 'settings.deleteAccount.description'}}</p>
   <form 
     id="delete-account"
     hx-post="/api/users/delete"
@@ -14,23 +14,22 @@
     {{#if success}}
       <p class="success">{{success}}</p>
     {{else}}
-      <div class="inputs">
-        <label class="{{#if errors.password}}error{{/if}}">
-          Password:
+      <div class="inputs">        <label class="{{#if errors.password}}error{{/if}}">
+          {{i18n 'settings.deleteAccount.password'}}:
           <input 
             id="password-for-delete-account" 
             name="password" 
             type="password" 
-            placeholder="Password..."
+            placeholder="{{i18n 'auth.login.password'}}..."
             hx-preserve="true"
           />
           {{#if errors.password}}<p class="error">{{errors.password}}</p>{{/if}}
         </label>
-      </div>
+      </div>      
       <button type="submit" class="danger">
         <span>{{> icons/trash}}</span>
         <span>{{> icons/spinner}}</span>
-        Delete
+        {{i18n 'settings.deleteAccount.submit'}}
       </button>
       {{#if error}}
         {{#unless errors}}

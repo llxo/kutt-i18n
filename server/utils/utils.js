@@ -343,10 +343,40 @@ function removeWww(host) {
 function registerHandlebarsHelpers() {
   hbs.registerHelper("ifEquals", function(arg1, arg2, options) {
     return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
-  });
-
-  hbs.registerHelper("json", function(context) {
+  });  hbs.registerHelper("json", function(context) {
     return JSON.stringify(context);
+  });
+    // i18n helper
+  hbs.registerHelper("i18n", function(key, options) {
+    // 尝试从 res.locals.t 获取翻译函数
+    const t = this.t || (this.data && this.data.root && this.data.root.t);
+    
+    if (!t) {
+      // 如果翻译函数不可用，尝试从应用程序级别获取
+      if (global.app && global.app.locals && global.app.locals.i18n) {
+        // 使用默认语言或从选项中获取语言
+        const language = (this.data && this.data.root && this.data.root.language) || 'en';
+        return global.app.locals.i18n.translate(key, language);
+      }
+      return key;
+    }
+    
+    // Get parameters from hash
+    const params = {};
+    if (options && options.hash) {
+      Object.keys(options.hash).forEach(key => {
+        params[key] = options.hash[key];
+      });
+    }
+    
+    return t(key, params);
+  });
+  
+  // concat helper - for string concatenation
+  hbs.registerHelper("concat", function(...args) {
+    // Remove the last argument which is the handlebars options object
+    args.pop();
+    return args.join('');
   });
   
   const blocks = {};

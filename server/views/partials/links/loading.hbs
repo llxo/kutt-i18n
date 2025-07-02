@@ -1,15 +1,13 @@
 {{#unless links}}
-  {{#ifEquals links.length 0}}
-    <tr class="no-data">
+  {{#ifEquals links.length 0}}    <tr class="no-data">
       <td>
-        No links.
+        {{i18n 'table.noData'}}
       </td>
     </tr>
-  {{else}}
-    <tr class="loading-placeholder">
+  {{else}}    <tr class="loading-placeholder">
       <td>
         {{> icons/spinner}}
-        Loading links...
+        {{i18n 'table.loading'}}
       </td>
     </tr>
   {{/ifEquals}}

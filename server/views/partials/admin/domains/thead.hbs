@@ -7,16 +7,14 @@
           <input 
             id="search" 
             name="search" 
-            type="text" 
-            placeholder="Search domain..." 
+            type="text"            placeholder="{{i18n 'admin.searchDomain'}}..." 
             class="table-input search admin" 
             hx-on:input="onSearchChange(event)" 
             hx-on:keyup="resetTableNav()"
             value="{{query.search}}"
-          />
-          <button 
+          />          <button 
             type="button" 
-            aria-label="Clear search" 
+            aria-label="{{i18n 'admin.action.clearSearch'}}" 
             class="clear" 
             onclick="clearSeachInput(event)"
           >
@@ -28,7 +26,7 @@
             id="search_user" 
             name="user" 
             type="text" 
-            placeholder="Search user..." 
+            placeholder="{{i18n 'admin.searchUser'}}..." 
             class="table-input search admin" 
             hx-on:input="onSearchChange(event)" 
             hx-on:keyup="resetTableNav()"
@@ -42,28 +40,24 @@
           >
             {{> icons/x}}
           </button>
-        </div>
-        <select id="domains-select-banned" name="banned" class="table-input ban" hx-on:change="resetTableNav()">
-          <option value="" selected>Banned...</option>
-          <option value="true">Banned</option>
-          <option value="false">Not banned</option>
+        </div>        <select id="domains-select-banned" name="banned" class="table-input ban" hx-on:change="resetTableNav()">
+          <option value="" selected>{{i18n 'admin.banned'}}...</option>
+          <option value="true">{{i18n 'admin.isBanned'}}</option>
+          <option value="false">{{i18n 'admin.notBanned'}}</option>
         </select>
       </div>
-      <div>
-        <select id="domains-select-links" name="links" class="table-input links" hx-on:change="resetTableNav()">
-          <option value="" selected>Links...</option>
-          <option value="true" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>With links</option>
-          <option value="false" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>No links</option>
-        </select>
-        <select id="domains-select-owner" name="owner" class="table-input owner" hx-on:change="resetTableNav()">
-          <option value="" selected>Owner...</option>
-          <option value="true" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>With owner</option>
-          <option value="false" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>No owner</option>
+      <div>        <select id="domains-select-links" name="links" class="table-input links" hx-on:change="resetTableNav()">
+          <option value="" selected>{{i18n 'admin.links'}}...</option>
+          <option value="true" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>{{i18n 'admin.withLinks'}}</option>
+          <option value="false" {{#ifEquals query.links 'true'}}selected{{/ifEquals}}>{{i18n 'admin.noLinks'}}</option>
+        </select>        <select id="domains-select-owner" name="owner" class="table-input owner" hx-on:change="resetTableNav()">
+          <option value="" selected>{{i18n 'admin.owner'}}...</option>
+          <option value="true" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>{{i18n 'admin.withOwner'}}</option>
+          <option value="false" {{#ifEquals query.owner 'true'}}selected{{/ifEquals}}>{{i18n 'admin.noOwner'}}</option>
         </select>
         <input id="total" name="total" type="hidden" value="{{total}}" />
         <input id="limit" name="limit" type="hidden" value="10" />
-        <input id="skip" name="skip" type="hidden" value="0" />
-        <button 
+        <input id="skip" name="skip" type="hidden" value="0" />        <button 
           class="table primary"
           hx-on:click='openDialog("admin-table-dialog")' 
           hx-get="/add-domain" 
@@ -71,18 +65,17 @@
           hx-indicator="#admin-table-dialog"
         >
           <span>{{> icons/plus}}</span>
-          Add domain
+          {{i18n 'admin.domain.add'}}
         </button>
       </div>
     </th>
     {{> admin/table_nav}}
-  </tr>
-  <tr>
-    <th class="domains-id">ID</th>
-    <th class="domains-address">Address</th>
-    <th class="domains-homepage">Homepage</th>
-    <th class="domains-created-at">Created at</th>
-    <th class="domains-links-count">Total links</th>
-    <th class="domains-actions"></th>
+  </tr>  <tr>
+    <th class="domains-id">{{i18n 'admin.domain.id'}}</th>
+    <th class="domains-address">{{i18n 'admin.domain.address'}}</th>
+    <th class="domains-homepage">{{i18n 'admin.domain.homepage'}}</th>
+    <th class="domains-created-at">{{i18n 'admin.domain.createdAt'}}</th>
+    <th class="domains-links-count">{{i18n 'admin.domain.linksCount'}}</th>
+    <th class="domains-actions">{{i18n 'admin.domain.actions'}}</th>
   </tr>
 </thead>

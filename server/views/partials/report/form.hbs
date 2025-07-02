@@ -8,8 +8,7 @@
     <p class="success">{{message}}</p>
   {{else}}
     <div class="inputs-wrapper">
-      <label>
-        URL containing malware/scam:
+      <label>        {{i18n 'report.linkLabel'}}:
         <input 
           type="text" 
           id="link" 
@@ -19,10 +18,9 @@
           class="{{#if errors.link}}error{{/if}}"
           required 
         />
-      </label>
-      <button type="submit" class="primary">
+      </label>      <button type="submit" class="primary">
         <span>{{> icons/spinner}}</span>
-        Send report
+        {{i18n 'report.submit'}}
       </button>
     </div>
     {{#if error}}<p class="error">{{error}}</p>{{/if}}
