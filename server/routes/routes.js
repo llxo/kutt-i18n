@@ -16,6 +16,7 @@ renderRouter.use(renders);
 
 const apiRouter = Router();
 apiRouter.use(locals.noLayout);
+apiRouter.use(language);
 apiRouter.use("/domains", domains);
 apiRouter.use("/health", health);
 apiRouter.use("/links", link);

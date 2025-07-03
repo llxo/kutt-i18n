@@ -1,25 +1,26 @@
 {{!-- Language switcher partial --}}
 <div class="language-switcher">
-  <div class="dropdown">
-    <button class="dropdown-toggle">
+  <div class="dropdown">    <button class="dropdown-toggle">
       {{#each availableLanguages}}
         {{#ifEquals code ../language}}
           {{name}}
         {{/ifEquals}}
       {{/each}}
+      <span id="language-loading" style="display: none; margin-left: 0.25rem;">...</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-caret">
         <path d="m6 9 6 6 6-6"/>
       </svg>
     </button>
     <div class="dropdown-menu">
-      {{#each availableLanguages}}
-        <a href="#" 
+      {{#each availableLanguages}}        <a href="#" 
            class="language-item {{#ifEquals code ../language}}active{{/ifEquals}}" 
            data-lang="{{code}}"
            hx-post="/api/language/{{code}}"
            hx-trigger="click"
            hx-swap="none"
-           hx-on:click="setTimeout(() => window.location.reload(), 100)">
+           hx-indicator="#language-loading"
+           hx-on:htmx:before-request="document.getElementById('language-loading').style.display = 'inline'"
+           hx-on:htmx:after-request="if(event.detail.successful) { setTimeout(() => window.location.reload(), 200); } else { document.getElementById('language-loading').style.display = 'none'; }">
           {{name}}
         </a>
       {{/each}}

@@ -1,15 +1,18 @@
 // Language routes
 const express = require("express");
+const asyncHandler = require("../utils/asyncHandler");
+const auth = require("../handlers/auth.handler");
+const locals = require("../handlers/locals.handler");
 const router = express.Router();
 
 // Get available languages
-router.get("/api/languages", (req, res) => {
+router.get("/api/languages", locals.config, (req, res) => {
   const languages = req.app.locals.i18n.getAvailableLanguages();
   res.json(languages);
 });
 
 // Change language
-router.post("/api/language/:code", async (req, res) => {
+router.post("/api/language/:code", locals.config, asyncHandler(auth.jwtLoose), async (req, res) => {
   const { code } = req.params;
   const languages = req.app.locals.i18n.getAvailableLanguages();
   const isValidLanguage = languages.some(lang => lang.code === code);

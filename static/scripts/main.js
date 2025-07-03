@@ -1,5 +1,5 @@
 // log htmx on dev
-// htmx.logAll();
+htmx.logAll();
 
 // add text/html accept header to receive html instead of json for the requests
 document.body.addEventListener("htmx:configRequest", function(evt) {
