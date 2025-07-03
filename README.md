@@ -1,9 +1,14 @@
 #####
 [在线地址](llxo.tech)
+
 test@test.com
+
 88888888
+
 没弄明白注册,有时间再研究一下
+
 有点小bug
+
 在本地nodejs可以切换语言,在服务器的docker就不行了,暂时只能中文
 #####
 <p align="center"><a href="https://kutt.it" title="kutt.it"><img src="https://raw.githubusercontent.com/thedevs-network/kutt/9d1c873897c3f5b9a1bd0c74dc5d23f2ed01f2ec/static/images/logo-github.png" alt="Kutt.it"></a></p>
