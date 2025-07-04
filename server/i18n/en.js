@@ -1,10 +1,14 @@
+const { logout } = require("../handlers/renders.handler");
 const { update } = require("../knex");
 
 // English language file
 module.exports = {  common: {
     welcome: "Welcome",
+    loginSuccess: "Welcome. Redirecting to homepage",
     login: "Login",
+    sendEmail: "Verification email sent",
     logout: "Logout",
+    logoutSuccess: "You have been logged out successfully.",
     settings: "Settings",
     admin: "Admin",
     report: "Report",
@@ -57,7 +61,7 @@ module.exports = {  common: {
       button: "Shorten",
       customurl: "Custom URL",
       password: "Password",
-      expiration: "Expiration",
+      expiration: "Expire in",
       description: "Description",
       domain: "Domain",
       advanced: "Show advanced options",
